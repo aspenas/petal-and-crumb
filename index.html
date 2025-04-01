@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Petal & Crumb | Artisanal Vegan Cupcakes Coming Soon to Belcaro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #f8e3dd;
@@ -12,13 +13,14 @@
             --text-color: #5d4037;
             --light-text: #8d6e63;
             --background: #fdfaf5;
+            --gradient: linear-gradient(135deg, #f8e3dd 0%, #fdfaf5 100%);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         body {
@@ -41,14 +43,19 @@
         header {
             text-align: center;
             padding: 40px 0;
+            position: relative;
+            overflow: hidden;
         }
         
         .logo {
-            font-size: 36px;
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
             font-weight: 300;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             margin-bottom: 10px;
             color: var(--accent-color);
+            animation: fadeInDown 1s ease-out;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         
         .tagline {
@@ -56,7 +63,10 @@
             font-weight: 300;
             color: var(--light-text);
             margin-bottom: 20px;
-            font-size: 18px;
+            font-size: 20px;
+            animation: fadeInUp 1s ease-out;
+            opacity: 0;
+            animation-fill-mode: forwards;
         }
         
         .main-content {
@@ -74,12 +84,13 @@
             height: 300px;
             margin: 30px 0;
             overflow: hidden;
+            animation: float 6s ease-in-out infinite;
         }
         
         .cupcake-circle {
             width: 300px;
             height: 300px;
-            background-color: var(--primary-color);
+            background: var(--gradient);
             border-radius: 50%;
             position: absolute;
             top: 50%;
@@ -89,25 +100,38 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 10px 30px rgba(93, 64, 55, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .cupcake-circle:hover {
+            transform: translate(-50%, -50%) scale(1.05);
         }
         
         .cupcake-icon {
             font-size: 120px;
             color: var(--accent-color);
+            animation: bounce 2s ease-in-out infinite;
         }
         
         .announcement {
-            font-size: 32px;
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
             font-weight: 300;
             margin: 20px 0;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            animation: fadeInUp 1s ease-out 0.5s;
+            opacity: 0;
+            animation-fill-mode: forwards;
         }
         
         .location {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 400;
             margin-bottom: 40px;
             color: var(--accent-color);
+            animation: fadeInUp 1s ease-out 0.7s;
+            opacity: 0;
+            animation-fill-mode: forwards;
         }
         
         .description {
@@ -116,6 +140,9 @@
             font-size: 18px;
             font-weight: 300;
             line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.9s;
+            opacity: 0;
+            animation-fill-mode: forwards;
         }
         
         .features {
@@ -124,6 +151,9 @@
             flex-wrap: wrap;
             gap: 20px;
             margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out 1.1s;
+            opacity: 0;
+            animation-fill-mode: forwards;
         }
         
         .feature {
@@ -137,10 +167,17 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(93, 64, 55, 0.15);
         }
         
         .feature i {
             color: var(--accent-color);
+            font-size: 20px;
         }
         
         .subscribe {
@@ -148,12 +185,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: fadeInUp 1s ease-out 1.3s;
+            opacity: 0;
+            animation-fill-mode: forwards;
         }
         
         .subscribe h3 {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 400;
             margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
         }
         
         .form-group {
@@ -166,11 +207,12 @@
         input[type="email"] {
             flex: 1;
             padding: 15px 20px;
-            border: 1px solid #e0e0e0;
+            border: 2px solid #e0e0e0;
             border-radius: 8px;
             font-size: 16px;
             outline: none;
             transition: all 0.3s ease;
+            background: white;
         }
         
         input[type="email"]:focus {
@@ -187,16 +229,24 @@
             font-size: 16px;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         button:hover {
             background-color: #566b1d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(107, 142, 35, 0.2);
         }
         
         footer {
             margin-top: auto;
             text-align: center;
             padding: 30px 0;
+            animation: fadeInUp 1s ease-out 1.5s;
+            opacity: 0;
+            animation-fill-mode: forwards;
         }
         
         .social-links {
@@ -210,15 +260,59 @@
             color: var(--light-text);
             font-size: 24px;
             transition: all 0.3s ease;
+            padding: 10px;
+            border-radius: 50%;
         }
         
         .social-links a:hover {
             color: var(--accent-color);
+            background: rgba(107, 142, 35, 0.1);
+            transform: translateY(-3px);
         }
         
         .copyright {
             font-size: 14px;
             color: var(--light-text);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
         
         @media (max-width: 768px) {
@@ -238,11 +332,15 @@
             }
             
             .announcement {
-                font-size: 28px;
+                font-size: 32px;
             }
             
             .location {
-                font-size: 18px;
+                font-size: 20px;
+            }
+
+            .logo {
+                font-size: 36px;
             }
         }
     </style>
