@@ -196,12 +196,62 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 8px 30px rgba(93, 64, 55, 0.1);
+            background: var(--gradient);
         }
         
-        .map-container iframe {
+        .map-container img {
             width: 100%;
             height: 100%;
-            border: none;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(107, 142, 35, 0.1) 0%, rgba(253, 250, 245, 0.1) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-marker {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        .map-marker::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
         
         .location-info {
@@ -451,19 +501,17 @@
             
             <div class="map-section">
                 <div class="map-container">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3067.8370000000005!2d-104.9477!3d39.6789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876c8f0f0f0f0f0f%3A0x0!2zMzU0MCBCZWxjYXJvIExuZSwgRGVudmVyLCBDTyA4MDExMA!5e0!3m2!1sen!2sus!4v1647123456789!5m2!1sen!2sus"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    <img src="https://api.mapbox.com/styles/v1/mapbox/light-v11/static/-104.9477,39.6789,15,0/800x400?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycW14eXc0Y2p0Z2kifQ.7KqJqyqyqyqyqyqyqyqyqg" alt="Map of Petal & Crumb location">
+                    <div class="map-overlay">
+                        <div class="map-marker"></div>
+                    </div>
                 </div>
                 <div class="location-info">
                     <h3>Our Location</h3>
                     <div class="location-details">
                         <div class="location-detail">
                             <i class="fas fa-map-marker-alt"></i>
-                            <p>3540 Belcaro Lane, Denver, CO 80110</p>
+                            <p>3540 E Belcaro Ln, Denver, CO 80209</p>
                         </div>
                         <div class="location-detail">
                             <i class="fas fa-crosshairs"></i>
